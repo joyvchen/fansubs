@@ -10,11 +10,11 @@ interface BadgeProps {
 
 export function Badge({ variant = 'default', children, className = '' }: BadgeProps) {
   const variants = {
-    subscriber: 'bg-gradient-to-r from-[#1ed760] to-[#1db954] text-black text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider',
-    popular: 'bg-gradient-to-r from-[#1ed760] to-[#1db954] text-black text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider',
-    value: 'bg-gradient-to-r from-[#ffa42b] to-[#ff8c00] text-black text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider',
-    default: 'bg-[#282828] text-white text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider',
-    verified: 'bg-[#509bf5] text-white text-[10px] font-bold px-2 py-0.5',
+    subscriber: 'bg-gradient-to-r from-[#1ed760] to-[#1db954] text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider',
+    popular: 'bg-gradient-to-r from-[#1ed760] to-[#1db954] text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider',
+    value: 'bg-gradient-to-r from-[#ffa42b] to-[#ff8c00] text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider',
+    default: 'bg-[#282828] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider',
+    verified: 'bg-[#509bf5] text-white text-[10px] font-bold px-3 py-1',
   };
 
   return (

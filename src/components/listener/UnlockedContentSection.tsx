@@ -3,17 +3,19 @@
 import React, { useState } from 'react';
 import { ExclusiveContent } from '@/types';
 import { ContentPreviewCard } from '@/components/ui/ContentPreviewCard';
-import { Badge } from '@/components/ui';
+import { Badge, VideoPlayerModal } from '@/components/ui';
 
 interface UnlockedContentSectionProps {
   content: ExclusiveContent[];
   tierName: string;
+  artistName?: string;
 }
 
 type ContentFilter = 'all' | ExclusiveContent['type'];
 
-export function UnlockedContentSection({ content, tierName }: UnlockedContentSectionProps) {
+export function UnlockedContentSection({ content, tierName, artistName }: UnlockedContentSectionProps) {
   const [filter, setFilter] = useState<ContentFilter>('all');
+  const [selectedVideo, setSelectedVideo] = useState<ExclusiveContent | null>(null);
 
   if (content.length === 0) return null;
 
@@ -50,12 +52,12 @@ export function UnlockedContentSection({ content, tierName }: UnlockedContentSec
 
       {/* Filters */}
       {availableFilters.length > 2 && (
-        <div className="flex gap-2 mb-4 overflow-x-auto hide-scrollbar pb-1">
+        <div className="flex gap-3 mb-5 overflow-x-auto hide-scrollbar pb-1">
           {availableFilters.map((f) => (
             <button
               key={f.value}
               onClick={() => setFilter(f.value)}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                 filter === f.value
                   ? 'bg-white text-black'
                   : 'bg-[#282828] text-white hover:bg-[#3e3e3e]'
@@ -68,9 +70,13 @@ export function UnlockedContentSection({ content, tierName }: UnlockedContentSec
       )}
 
       {/* Content Grid */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         {filteredContent.map((item) => (
-          <ContentPreviewCard key={item.id} content={item} />
+          <ContentPreviewCard
+            key={item.id}
+            content={item}
+            onClick={item.type === 'clip' && item.videoUrl ? () => setSelectedVideo(item) : undefined}
+          />
         ))}
       </div>
 
@@ -78,6 +84,17 @@ export function UnlockedContentSection({ content, tierName }: UnlockedContentSec
         <div className="text-center py-8">
           <p className="text-[#a7a7a7]">No content in this category yet</p>
         </div>
+      )}
+
+      {/* Video Player Modal */}
+      {selectedVideo && selectedVideo.videoUrl && (
+        <VideoPlayerModal
+          isOpen={!!selectedVideo}
+          onClose={() => setSelectedVideo(null)}
+          videoUrl={selectedVideo.videoUrl}
+          title={selectedVideo.title}
+          artistName={artistName}
+        />
       )}
     </section>
   );

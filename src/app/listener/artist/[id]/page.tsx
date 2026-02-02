@@ -10,14 +10,26 @@ interface ArtistPageProps {
   params: Promise<{ id: string }>;
 }
 
-function ArtistProfileImage({ src, alt }: { src: string; alt: string }) {
+function ArtistHeroImage({ src, fallbackSrc, alt }: { src: string; fallbackSrc: string; alt: string }) {
   const [imageError, setImageError] = useState(false);
+  const [fallbackError, setFallbackError] = useState(false);
 
-  if (imageError || !src) {
+  if ((imageError && fallbackError) || (!src && !fallbackSrc)) {
     return (
-      <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-5xl shadow-2xl mb-4">
+      <div className="w-full h-48 bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-6xl">
         {alt.charAt(0)}
       </div>
+    );
+  }
+
+  if (imageError) {
+    return (
+      <img
+        src={fallbackSrc}
+        alt={alt}
+        className="w-full h-48 object-cover"
+        onError={() => setFallbackError(true)}
+      />
     );
   }
 
@@ -25,7 +37,7 @@ function ArtistProfileImage({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="w-32 h-32 mx-auto rounded-full object-cover shadow-2xl mb-4"
+      className="w-full h-48 object-cover"
       onError={() => setImageError(true)}
     />
   );
@@ -99,12 +111,17 @@ export default function ArtistPage({ params }: ArtistPageProps) {
         </button>
       </div>
 
-      {/* Artist Header */}
-      <div className="px-4 -mt-8">
-        {/* Artist Image */}
-        <ArtistProfileImage src={artist.imageUrl} alt={artist.name} />
+      {/* Artist Hero Image */}
+      <div className="-mt-14">
+        <ArtistHeroImage
+          src={artist.headerImageUrl}
+          fallbackSrc={artist.imageUrl}
+          alt={artist.name}
+        />
+      </div>
 
-        {/* Artist Info */}
+      {/* Artist Info */}
+      <div className="px-4 -mt-6">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-1">
             <h1 className="text-white font-bold text-2xl">{artist.name}</h1>
@@ -149,6 +166,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
               <UnlockedContentSection
                 content={accessibleContent}
                 tierName={currentTier.name}
+                artistName={artist.name}
               />
 
               {/* Show upgrade options if not on highest tier */}

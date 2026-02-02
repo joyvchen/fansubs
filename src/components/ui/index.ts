@@ -7,3 +7,4 @@ export { Sidebar } from './Sidebar';
 export { Modal } from './Modal';
 export { FeatureList } from './FeatureList';
 export { ContentPreviewCard } from './ContentPreviewCard';
+export { VideoPlayerModal } from './VideoPlayerModal';

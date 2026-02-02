@@ -50,6 +50,7 @@ export interface ExclusiveContent {
   thumbnailUrl?: string;
   createdAt: string;
   content?: string; // For merch codes, audio URLs, etc.
+  videoUrl?: string; // For clip content
 }
 
 export interface User {

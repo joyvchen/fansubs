@@ -244,10 +244,11 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     id: 'ty-clip-1',
     artistId: 'tune-yards',
     type: 'clip',
-    title: "Recording 'Better Dreaming' in the studio",
-    description: 'Go behind the scenes as we lay down tracks for our latest album.',
+    title: 'Behind the Scenes on Tour',
+    description: 'A DAY ON TOUR with a toddler and a voice.',
     tierAccess: ['tune-yards-tier-2', 'tune-yards-tier-3'],
     thumbnailUrl: '/images/tuneyards-studio.jpg',
+    videoUrl: '/images/tuneyards-bts-video.mp4',
     createdAt: '2025-01-15',
   },
   {
@@ -474,5 +475,13 @@ export const mockAnalytics: ArtistAnalytics[] = [
   },
 ];
 
-// Initial subscriptions (empty - user hasn't subscribed yet)
-export const mockSubscriptions: FanSubscription[] = [];
+// Initial subscriptions - user is subscribed to Tune-Yards Inner Circle
+export const mockSubscriptions: FanSubscription[] = [
+  {
+    userId: 'user-1',
+    artistId: 'tune-yards',
+    tierId: 'tune-yards-tier-2', // Inner Circle tier
+    status: 'active',
+    startDate: '2025-12-01',
+  },
+];

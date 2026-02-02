@@ -44,12 +44,12 @@ function LibraryContent() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+        <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-1">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                 activeTab === tab.id
                   ? 'bg-[#1ed760] text-black'
                   : 'bg-[#282828] text-white hover:bg-[#3e3e3e]'
@@ -57,7 +57,7 @@ function LibraryContent() {
             >
               {tab.label}
               {tab.id === 'subscriptions' && subscribedArtists.length > 0 && (
-                <span className="ml-1.5 px-1.5 py-0.5 bg-black/20 rounded-full text-xs">
+                <span className="ml-2 px-2 py-0.5 bg-black/20 rounded-full text-xs">
                   {subscribedArtists.length}
                 </span>
               )}

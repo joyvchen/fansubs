@@ -116,6 +116,17 @@ export function ContentPreviewCard({ content, locked = false, onClick }: Content
           </div>
         )}
 
+        {/* Play Button Overlay for Clips */}
+        {!locked && content.type === 'clip' && onClick && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity">
+            <div className="w-12 h-12 bg-[#1ed760] rounded-full flex items-center justify-center shadow-lg">
+              <svg className="w-5 h-5 text-black ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        )}
+
         {/* Content Type Badge */}
         <div className="absolute top-2 left-2">
           <span className="px-2 py-1 bg-black/60 rounded text-[10px] text-white font-medium">
@@ -125,9 +136,9 @@ export function ContentPreviewCard({ content, locked = false, onClick }: Content
       </div>
 
       {/* Info */}
-      <div className="p-3">
-        <h4 className="text-white text-sm font-semibold line-clamp-1">{content.title}</h4>
-        <p className="text-[#a7a7a7] text-xs mt-1 line-clamp-2">{content.description}</p>
+      <div className="p-4">
+        <h4 className="text-white text-sm font-semibold line-clamp-2 leading-tight">{content.title}</h4>
+        <p className="text-[#a7a7a7] text-xs mt-2 line-clamp-2 leading-relaxed">{content.description}</p>
       </div>
     </div>
   );
