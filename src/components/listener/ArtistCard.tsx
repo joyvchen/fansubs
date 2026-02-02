@@ -70,7 +70,7 @@ export function ArtistCard({
     return (
       <Link
         href={`/listener/artist/${artist.id}`}
-        className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#282828] transition-colors"
+        className="flex items-center gap-4 p-4 rounded-lg hover:bg-[#282828] transition-colors"
       >
         <div className="flex-shrink-0">
           <ArtistImage src={artist.imageUrl} alt={artist.name} size="sm" />
@@ -95,7 +95,7 @@ export function ArtistCard({
         href={`/listener/artist/${artist.id}`}
         className="block w-32 flex-shrink-0"
       >
-        <div className="mb-2 hover:scale-105 transition-transform shadow-lg rounded-full overflow-hidden">
+        <div className="mb-3 hover:scale-105 transition-transform shadow-lg rounded-full overflow-hidden">
           <ArtistImage src={artist.imageUrl} alt={artist.name} size="md" />
         </div>
         <h3 className="text-white font-semibold text-sm text-center truncate">{artist.name}</h3>
@@ -107,9 +107,9 @@ export function ArtistCard({
   return (
     <Link
       href={`/listener/artist/${artist.id}`}
-      className="block bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-colors group"
+      className="block bg-[#181818] rounded-lg p-5 hover:bg-[#282828] transition-colors group"
     >
-      <div className="mb-4 group-hover:scale-105 transition-transform shadow-lg rounded-full overflow-hidden">
+      <div className="mb-5 group-hover:scale-105 transition-transform shadow-lg rounded-full overflow-hidden">
         <ArtistImage src={artist.imageUrl} alt={artist.name} size="lg" />
       </div>
 

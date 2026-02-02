@@ -19,11 +19,11 @@ export function RevenueChart({ data }: RevenueChartProps) {
   };
 
   return (
-    <div className="bg-[#181818] rounded-xl p-5">
-      <h3 className="text-white font-bold mb-4">Revenue Over Time</h3>
+    <div className="bg-[#181818] rounded-xl p-6">
+      <h3 className="text-white font-bold mb-5">Revenue Over Time</h3>
 
       {/* Chart */}
-      <div className="h-48 flex items-end gap-2">
+      <div className="h-48 flex items-end gap-3">
         {data.map((item, index) => {
           const height = range > 0
             ? ((item.revenue - minRevenue) / range) * 100 + 20
@@ -51,7 +51,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
       </div>
 
       {/* Legend */}
-      <div className="flex justify-between mt-4 pt-4 border-t border-[#282828]">
+      <div className="flex justify-between mt-5 pt-5 border-t border-[#282828]">
         <div>
           <p className="text-[#a7a7a7] text-xs">Lowest</p>
           <p className="text-white font-semibold">{formatCurrency(minRevenue)}</p>

@@ -39,25 +39,25 @@ export function UnlockedContentSection({ content, tierName, artistName }: Unlock
   return (
     <section>
       {/* Section Header */}
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center gap-4 mb-4">
         <svg className="w-5 h-5 text-[#1ed760]" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
         </svg>
         <h2 className="text-white font-bold text-lg">Your Exclusive Content</h2>
         <Badge variant="subscriber">{tierName}</Badge>
       </div>
-      <p className="text-[#a7a7a7] text-sm mb-4">
+      <p className="text-[#a7a7a7] text-sm mb-6">
         Content available with your subscription
       </p>
 
       {/* Filters */}
       {availableFilters.length > 2 && (
-        <div className="flex gap-3 mb-5 overflow-x-auto hide-scrollbar pb-1">
+        <div className="flex gap-5 mb-8 overflow-x-auto hide-scrollbar pb-1">
           {availableFilters.map((f) => (
             <button
               key={f.value}
               onClick={() => setFilter(f.value)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+              className={`px-6 py-3 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                 filter === f.value
                   ? 'bg-white text-black'
                   : 'bg-[#282828] text-white hover:bg-[#3e3e3e]'
@@ -70,7 +70,7 @@ export function UnlockedContentSection({ content, tierName, artistName }: Unlock
       )}
 
       {/* Content Grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-6">
         {filteredContent.map((item) => (
           <ContentPreviewCard
             key={item.id}

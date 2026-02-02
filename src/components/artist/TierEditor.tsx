@@ -48,7 +48,7 @@ export function TierEditor({ tier, artistId, onSave, onCancel }: TierEditorProps
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-8">
       {/* Tier Name */}
       <div>
         <label className="block text-white font-medium mb-2">Tier Name</label>
@@ -114,7 +114,7 @@ export function TierEditor({ tier, artistId, onSave, onCancel }: TierEditorProps
       {/* Features */}
       <div>
         <label className="block text-white font-medium mb-2">Features</label>
-        <div className="space-y-2">
+        <div className="space-y-3">
           {features.map((feature, index) => (
             <div key={index} className="flex gap-2">
               <input
@@ -187,7 +187,7 @@ export function TierEditor({ tier, artistId, onSave, onCancel }: TierEditorProps
       {/* Preview */}
       <div>
         <label className="block text-white font-medium mb-2">Preview</label>
-        <div className="bg-[#282828] rounded-xl p-4 relative">
+        <div className="bg-[#282828] rounded-xl p-5 relative">
           {highlight && (
             <div className="absolute -top-2 right-4">
               <Badge variant={highlight === 'Most Popular' ? 'popular' : 'value'}>
@@ -205,7 +205,7 @@ export function TierEditor({ tier, artistId, onSave, onCancel }: TierEditorProps
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3 pt-4">
+      <div className="flex gap-4 pt-6">
         <Button type="button" variant="secondary" onClick={onCancel} className="flex-1">
           Cancel
         </Button>

@@ -16,9 +16,9 @@ export function FeatureList({ features, variant = 'default' }: FeatureListProps)
 
   if (variant === 'compact') {
     return (
-      <ul className="space-y-2">
+      <ul className="space-y-4">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start gap-2 text-[#a7a7a7] text-sm">
+          <li key={index} className="flex items-start gap-4 text-[#a7a7a7] text-sm">
             {checkIcon}
             <span>{feature}</span>
           </li>
@@ -28,9 +28,9 @@ export function FeatureList({ features, variant = 'default' }: FeatureListProps)
   }
 
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-5">
       {features.map((feature, index) => (
-        <li key={index} className="flex items-start gap-3 text-white">
+        <li key={index} className="flex items-start gap-4 text-white">
           {checkIcon}
           <span className="text-sm">{feature}</span>
         </li>

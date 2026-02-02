@@ -24,17 +24,18 @@ export function TierCard({
 
   if (compact) {
     return (
-      <div className={`${gradientClass} rounded-lg p-6 relative ${tier.highlight ? 'pt-8' : ''}`}>
+      <div className={`${gradientClass} rounded-lg p-7 relative`}>
+        {/* Badge row - separate from content to avoid overlap */}
         {tier.highlight && (
-          <div className="absolute top-2 right-4">
+          <div className="flex justify-end mb-4">
             <Badge variant={tier.highlight === 'Most Popular' ? 'popular' : 'value'}>
               {tier.highlight}
             </Badge>
           </div>
         )}
 
-        <div className="flex justify-between items-start mb-4 gap-4">
-          <div className="flex-1 min-w-0">
+        <div className="flex justify-between items-start mb-5 gap-8">
+          <div className="flex-1 min-w-0 pr-6">
             <h3 className="text-white font-bold text-lg leading-tight">{tier.name}</h3>
             <p className="text-[#a7a7a7] text-sm mt-1">{tier.tagline}</p>
           </div>
@@ -55,22 +56,24 @@ export function TierCard({
   }
 
   return (
-    <div className={`${gradientClass} rounded-xl p-7 relative ${tier.highlight || isCurrentTier ? 'pt-9' : ''}`}>
-      {tier.highlight && (
-        <div className="absolute top-2 right-5">
-          <Badge variant={tier.highlight === 'Most Popular' ? 'popular' : 'value'}>
-            {tier.highlight}
-          </Badge>
+    <div className={`${gradientClass} rounded-xl p-8 relative`}>
+      {/* Badge row - inline flex instead of absolute to avoid overlap */}
+      {(tier.highlight || isCurrentTier) && (
+        <div className="flex justify-between items-center mb-5">
+          {isCurrentTier ? (
+            <Badge variant="subscriber">Current Plan</Badge>
+          ) : (
+            <div />
+          )}
+          {tier.highlight && (
+            <Badge variant={tier.highlight === 'Most Popular' ? 'popular' : 'value'}>
+              {tier.highlight}
+            </Badge>
+          )}
         </div>
       )}
 
-      {isCurrentTier && (
-        <div className="absolute top-2 left-5">
-          <Badge variant="subscriber">Current Plan</Badge>
-        </div>
-      )}
-
-      <div className="mb-6">
+      <div className="mb-8">
         <h3 className="text-white font-bold text-xl mb-2">{tier.name}</h3>
         <p className="text-[#a7a7a7] text-sm">{tier.tagline}</p>
       </div>
@@ -82,9 +85,9 @@ export function TierCard({
 
       <p className="text-[#a7a7a7] text-sm mb-6 line-clamp-3 leading-relaxed">{tier.description}</p>
 
-      <ul className="space-y-3 mb-6">
+      <ul className="space-y-4 mb-6">
         {tier.features.slice(0, 3).map((feature, index) => (
-          <li key={index} className="flex items-start gap-3 text-sm text-white">
+          <li key={index} className="flex items-start gap-4 text-sm text-white">
             <svg className="w-4 h-4 text-[#1ed760] mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
             </svg>
@@ -92,13 +95,13 @@ export function TierCard({
           </li>
         ))}
         {tier.features.length > 3 && (
-          <li className="text-[#a7a7a7] text-sm pl-7">
+          <li className="text-[#a7a7a7] text-sm pl-8">
             +{tier.features.length - 3} more benefits
           </li>
         )}
       </ul>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {onSelect && !isCurrentTier && (
           <Button variant="primary" fullWidth onClick={onSelect}>
             Subscribe to {tier.name}

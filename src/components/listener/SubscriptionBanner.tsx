@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 export function SubscriptionBanner() {
   return (
-    <div className="bg-gradient-to-r from-[#1a472a] via-[#1e3a5f] to-[#2d1b4e] rounded-xl p-5 mx-4 my-4">
-      <div className="flex items-center gap-4">
+    <div className="bg-gradient-to-r from-[#1a472a] via-[#1e3a5f] to-[#2d1b4e] rounded-xl p-6 mx-5 my-5">
+      <div className="flex items-center gap-5">
         <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1ed760] to-[#509bf5] flex items-center justify-center flex-shrink-0">
           <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />

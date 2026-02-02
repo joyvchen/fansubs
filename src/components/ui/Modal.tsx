@@ -28,7 +28,7 @@ export function Modal({ isOpen, onClose, children, title, fullScreen = false }: 
     return (
       <div className="fixed inset-0 z-50 bg-[#121212] animate-slide-up overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-[#121212]/95 backdrop-blur-sm z-10 px-4 py-4 flex items-center">
+        <div className="sticky top-0 bg-[#121212]/95 backdrop-blur-sm z-10 px-5 py-5 flex items-center">
           <button
             onClick={onClose}
             className="p-2 -ml-2 hover:bg-[#282828] rounded-full transition-colors"
@@ -61,7 +61,7 @@ export function Modal({ isOpen, onClose, children, title, fullScreen = false }: 
       <div className="relative bg-[#282828] rounded-t-2xl sm:rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-slide-up">
         {/* Header */}
         {title && (
-          <div className="sticky top-0 bg-[#282828] px-6 py-4 border-b border-[#404040] flex items-center justify-between">
+          <div className="sticky top-0 bg-[#282828] px-8 py-5 border-b border-[#404040] flex items-center justify-between">
             <h2 className="text-white font-bold text-lg">{title}</h2>
             <button
               onClick={onClose}

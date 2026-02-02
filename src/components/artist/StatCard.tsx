@@ -33,13 +33,13 @@ export function StatCard({ label, value, subValue, trend, trendValue, icon }: St
   };
 
   return (
-    <div className="bg-[#181818] rounded-xl p-5">
-      <div className="flex items-start justify-between mb-3">
+    <div className="bg-[#181818] rounded-xl p-6">
+      <div className="flex items-start justify-between mb-4">
         <span className="text-[#a7a7a7] text-sm">{label}</span>
         {icon && <span className="text-[#a7a7a7]">{icon}</span>}
       </div>
 
-      <div className="flex items-end gap-2">
+      <div className="flex items-end gap-3">
         <span className="text-white font-bold text-3xl">{value}</span>
         {subValue && <span className="text-[#a7a7a7] text-sm mb-1">{subValue}</span>}
       </div>

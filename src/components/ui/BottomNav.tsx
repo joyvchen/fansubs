@@ -57,15 +57,15 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[375px] bg-gradient-to-t from-black via-black/95 to-transparent pt-6 pb-3 px-4 z-50">
-      <div className="flex justify-around items-center bg-[#181818] rounded-lg py-3">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[375px] bg-gradient-to-t from-black via-black/95 to-transparent pt-6 pb-4 px-5 z-50">
+      <div className="flex justify-around items-center bg-[#181818] rounded-lg py-4">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.href.split('/').slice(0, 3).join('/'));
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center gap-1 px-4 py-1 transition-colors ${
+              className={`flex flex-col items-center gap-1 px-6 py-3 transition-colors ${
                 isActive ? 'text-white' : 'text-[#a7a7a7] hover:text-white'
               }`}
             >

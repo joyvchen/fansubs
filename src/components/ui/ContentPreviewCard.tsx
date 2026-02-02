@@ -136,9 +136,9 @@ export function ContentPreviewCard({ content, locked = false, onClick }: Content
       </div>
 
       {/* Info */}
-      <div className="p-4">
-        <h4 className="text-white text-sm font-semibold line-clamp-2 leading-tight">{content.title}</h4>
-        <p className="text-[#a7a7a7] text-xs mt-2 line-clamp-2 leading-relaxed">{content.description}</p>
+      <div className="p-6">
+        <h4 className="text-white text-sm font-semibold line-clamp-2 leading-snug">{content.title}</h4>
+        <p className="text-[#a7a7a7] text-xs mt-3 line-clamp-2 leading-relaxed">{content.description}</p>
       </div>
     </div>
   );

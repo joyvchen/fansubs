@@ -116,12 +116,12 @@ export function ContentCreator({ artistId, tiers, onSave, onCancel }: ContentCre
     return (
       <div className="space-y-4">
         <h2 className="text-white font-bold text-lg mb-4">What would you like to create?</h2>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           {contentTypes.map((type) => (
             <button
               key={type.id}
               onClick={() => setContentType(type.id)}
-              className="bg-[#282828] rounded-xl p-4 text-left hover:bg-[#3e3e3e] transition-colors"
+              className="bg-[#282828] rounded-xl p-5 text-left hover:bg-[#3e3e3e] transition-colors"
             >
               <span className="text-[#1ed760]">{type.icon}</span>
               <h3 className="text-white font-semibold mt-2">{type.label}</h3>
@@ -138,7 +138,7 @@ export function ContentCreator({ artistId, tiers, onSave, onCancel }: ContentCre
 
   // Step 2: Content details form
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-8">
       {/* Back button */}
       <button
         type="button"
@@ -214,11 +214,11 @@ export function ContentCreator({ artistId, tiers, onSave, onCancel }: ContentCre
             {selectedTiers.length === tiers.length ? 'Deselect all' : 'Select all'}
           </button>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-3">
           {tiers.map((tier) => (
             <label
               key={tier.id}
-              className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors ${
+              className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-colors ${
                 selectedTiers.includes(tier.id)
                   ? 'bg-[#1ed760]/10 border border-[#1ed760]'
                   : 'bg-[#282828] border border-transparent'
@@ -255,7 +255,7 @@ export function ContentCreator({ artistId, tiers, onSave, onCancel }: ContentCre
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3 pt-4">
+      <div className="flex gap-4 pt-6">
         <Button type="button" variant="secondary" onClick={onCancel} className="flex-1">
           Cancel
         </Button>

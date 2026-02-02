@@ -31,18 +31,19 @@ export function TierDetailModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} fullScreen>
-      <div className="px-4 pb-32">
+      <div className="px-5 pb-36">
         {/* Tier Header */}
-        <div className={`tier-gradient-${Math.min(tierIndex, 3)} rounded-xl p-6 mb-6 relative`}>
+        <div className={`tier-gradient-${Math.min(tierIndex, 3)} rounded-xl p-7 mb-8`}>
+          {/* Badge row - inline instead of absolute */}
           {tier.highlight && (
-            <div className="absolute -top-3 right-4">
+            <div className="flex justify-end mb-5">
               <Badge variant={tier.highlight === 'Most Popular' ? 'popular' : 'value'}>
                 {tier.highlight}
               </Badge>
             </div>
           )}
 
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-4 mb-5">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1ed760] to-[#509bf5] flex items-center justify-center text-black font-bold text-lg">
               {artist.name.charAt(0)}
             </div>
@@ -62,18 +63,18 @@ export function TierDetailModal({
         </div>
 
         {/* What You Get */}
-        <section className="mb-8">
-          <h2 className="text-white font-bold text-lg mb-4">What you get</h2>
-          <div className="bg-[#181818] rounded-xl p-4">
+        <section className="mb-10">
+          <h2 className="text-white font-bold text-lg mb-5">What you get</h2>
+          <div className="bg-[#181818] rounded-xl p-5">
             <FeatureList features={tier.features} />
           </div>
         </section>
 
         {/* Content Preview */}
         {previewContent.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-white font-bold text-lg mb-4">Exclusive content preview</h2>
-            <div className="grid grid-cols-2 gap-3">
+          <section className="mb-10">
+            <h2 className="text-white font-bold text-lg mb-5">Exclusive content preview</h2>
+            <div className="grid grid-cols-2 gap-5">
               {previewContent.slice(0, 4).map((content) => (
                 <ContentPreviewCard key={content.id} content={content} locked />
               ))}
@@ -88,8 +89,8 @@ export function TierDetailModal({
 
         {/* Upgrade Callout */}
         {higherTiers.length > 0 && (
-          <section className="mb-8">
-            <div className="bg-[#282828] rounded-xl p-4">
+          <section className="mb-10">
+            <div className="bg-[#282828] rounded-xl p-5">
               <h3 className="text-white font-semibold mb-2">Want more?</h3>
               <p className="text-[#a7a7a7] text-sm mb-3">
                 Upgrade to <span className="text-white">{higherTiers[0].name}</span> for{' '}
@@ -114,7 +115,7 @@ export function TierDetailModal({
       </div>
 
       {/* Fixed CTA */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-[#121212] via-[#121212] to-transparent pt-6 pb-6 px-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-[#121212] via-[#121212] to-transparent pt-8 pb-8 px-5">
         <div className="max-w-[375px] mx-auto">
           {isCurrentTier ? (
             <Button variant="secondary" fullWidth disabled>

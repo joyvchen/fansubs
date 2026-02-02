@@ -28,9 +28,9 @@ export function Button({
   };
 
   const sizes = {
-    sm: 'text-xs px-5 py-2.5',
-    md: 'text-sm px-8 py-3.5',
-    lg: 'text-base px-10 py-4',
+    sm: 'text-xs px-6 py-3',
+    md: 'text-sm px-10 py-4',
+    lg: 'text-base px-12 py-5',
   };
 
   const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed hover:scale-100' : 'cursor-pointer';
