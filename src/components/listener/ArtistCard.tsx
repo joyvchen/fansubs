@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Artist } from '@/types';
 import { Badge, VerifiedBadge } from '@/components/ui';
@@ -10,6 +10,44 @@ interface ArtistCardProps {
   showSubscribeBadge?: boolean;
   isSubscribed?: boolean;
   variant?: 'default' | 'compact' | 'horizontal';
+}
+
+function ArtistImage({
+  src,
+  alt,
+  size = 'md',
+  className = ''
+}: {
+  src: string;
+  alt: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  className?: string;
+}) {
+  const [imageError, setImageError] = useState(false);
+
+  const sizes = {
+    sm: 'w-14 h-14 text-xl',
+    md: 'w-32 h-32 text-3xl',
+    lg: 'w-full aspect-square text-4xl',
+    xl: 'w-32 h-32 text-5xl',
+  };
+
+  if (imageError || !src) {
+    return (
+      <div className={`${sizes[size]} rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold ${className}`}>
+        {alt.charAt(0)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`${sizes[size]} rounded-full object-cover ${className}`}
+      onError={() => setImageError(true)}
+    />
+  );
 }
 
 export function ArtistCard({
@@ -34,8 +72,8 @@ export function ArtistCard({
         href={`/listener/artist/${artist.id}`}
         className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#282828] transition-colors"
       >
-        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-          {artist.name.charAt(0)}
+        <div className="flex-shrink-0">
+          <ArtistImage src={artist.imageUrl} alt={artist.name} size="sm" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
@@ -57,8 +95,8 @@ export function ArtistCard({
         href={`/listener/artist/${artist.id}`}
         className="block w-32 flex-shrink-0"
       >
-        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-3xl mb-2 hover:scale-105 transition-transform shadow-lg">
-          {artist.name.charAt(0)}
+        <div className="mb-2 hover:scale-105 transition-transform shadow-lg rounded-full overflow-hidden">
+          <ArtistImage src={artist.imageUrl} alt={artist.name} size="md" />
         </div>
         <h3 className="text-white font-semibold text-sm text-center truncate">{artist.name}</h3>
         <p className="text-[#a7a7a7] text-xs text-center">Artist</p>
@@ -71,8 +109,8 @@ export function ArtistCard({
       href={`/listener/artist/${artist.id}`}
       className="block bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-colors group"
     >
-      <div className="w-full aspect-square rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-4xl mb-4 group-hover:scale-105 transition-transform shadow-lg">
-        {artist.name.charAt(0)}
+      <div className="mb-4 group-hover:scale-105 transition-transform shadow-lg rounded-full overflow-hidden">
+        <ArtistImage src={artist.imageUrl} alt={artist.name} size="lg" />
       </div>
 
       <div className="flex items-center gap-2 mb-1">

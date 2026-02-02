@@ -8,15 +8,15 @@ export const mockUser: User = {
   imageUrl: '/images/user-avatar.jpg',
 };
 
-// Demo Artists
+// Demo Artists - using local images from /public/images
 export const mockArtists: Artist[] = [
   {
     id: 'tune-yards',
     name: 'Tune-Yards',
     verified: true,
     monthlyListeners: 168000,
-    imageUrl: '/images/artists/tune-yards.jpg',
-    headerImageUrl: '/images/artists/tune-yards-header.jpg',
+    imageUrl: '/images/tuneyards-avatar.jpg',
+    headerImageUrl: '/images/tuneyards-hero.jpg',
     subscriptionsEnabled: true,
     bio: 'Experimental pop duo from Oakland, California. Merrill Garbus and Nate Brenner create boundary-pushing music that defies categorization.',
     genre: 'Experimental pop, indie',
@@ -30,8 +30,8 @@ export const mockArtists: Artist[] = [
     name: 'The Belair Lip Bombs',
     verified: true,
     monthlyListeners: 341000,
-    imageUrl: '/images/artists/belair-lip-bombs.jpg',
-    headerImageUrl: '/images/artists/belair-lip-bombs-header.jpg',
+    imageUrl: '/images/belairlipbombs-avatar.jpg',
+    headerImageUrl: '/images/belairlipbombs-hero.jpg',
     subscriptionsEnabled: true,
     bio: 'Melbourne-based indie rock band known for their energetic live shows and catchy guitar-driven hooks.',
     genre: 'Indie rock, guitar pop',
@@ -45,8 +45,8 @@ export const mockArtists: Artist[] = [
     name: 'Magdalena Bay',
     verified: true,
     monthlyListeners: 5000000,
-    imageUrl: '/images/artists/magdalena-bay.jpg',
-    headerImageUrl: '/images/artists/magdalena-bay-header.jpg',
+    imageUrl: '/images/magdalenabay-avatar.jpg',
+    headerImageUrl: '/images/magdalenabay-hero.jpg',
     subscriptionsEnabled: true,
     bio: 'LA-based synth-pop duo crafting immersive sonic worlds. Mica Tenenbaum and Matthew Lewin blend retro synthesizers with modern production.',
     genre: 'Synth-pop, dance-pop, electronic',
@@ -247,7 +247,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: "Recording 'Better Dreaming' in the studio",
     description: 'Go behind the scenes as we lay down tracks for our latest album.',
     tierAccess: ['tune-yards-tier-2', 'tune-yards-tier-3'],
-    thumbnailUrl: '/images/content/ty-studio.jpg',
+    thumbnailUrl: '/images/tuneyards-studio.jpg',
     createdAt: '2025-01-15',
   },
   {
@@ -257,7 +257,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: "Merrill's Inspiration Playlist",
     description: 'The songs that inspired Better Dreaming',
     tierAccess: ['tune-yards-tier-1', 'tune-yards-tier-2', 'tune-yards-tier-3'],
-    thumbnailUrl: '/images/content/ty-playlist.jpg',
+    thumbnailUrl: '/images/tuneyards-playlist.jpg',
     createdAt: '2025-01-10',
   },
   {
@@ -267,6 +267,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: '20% off tour merch: TUNEFAM20',
     description: 'Use this code at our merch store for 20% off any item.',
     tierAccess: ['tune-yards-tier-3'],
+    thumbnailUrl: '/images/tuneyards-merch.jpg',
     createdAt: '2025-01-20',
     content: 'TUNEFAM20',
   },
@@ -277,6 +278,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Thanks for supporting us!',
     description: 'A personal message from Merrill and Nate.',
     tierAccess: ['tune-yards-tier-1', 'tune-yards-tier-2', 'tune-yards-tier-3'],
+    thumbnailUrl: '/images/tuneyards-audio.jpg',
     createdAt: '2025-01-05',
   },
   {
@@ -286,7 +288,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Heartbreak (Demo Version)',
     description: 'An early demo from the Better Dreaming sessions.',
     tierAccess: ['tune-yards-tier-3'],
-    thumbnailUrl: '/images/content/ty-demo.jpg',
+    thumbnailUrl: '/images/tuneyards-album.jpg',
     createdAt: '2025-01-25',
   },
   // Belair Lip Bombs Content
@@ -297,7 +299,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Hey You - Live at Corner Hotel',
     description: 'Full performance from our hometown show.',
     tierAccess: ['belair-tier-2', 'belair-tier-3'],
-    thumbnailUrl: '/images/content/blb-live.jpg',
+    thumbnailUrl: '/images/belairlipbombs-hero.jpg',
     createdAt: '2025-01-18',
   },
   {
@@ -307,7 +309,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Our Favorite Australian Bands',
     description: 'The bands that shaped our sound.',
     tierAccess: ['belair-tier-1', 'belair-tier-2', 'belair-tier-3'],
-    thumbnailUrl: '/images/content/blb-playlist.jpg',
+    thumbnailUrl: '/images/belairlipbombs-album.jpg',
     createdAt: '2025-01-12',
   },
   {
@@ -317,7 +319,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'North America Tour Diary',
     description: 'Behind the scenes of our first US tour.',
     tierAccess: ['belair-tier-2', 'belair-tier-3'],
-    thumbnailUrl: '/images/content/blb-tour.jpg',
+    thumbnailUrl: '/images/belairlipbombs-avatar.jpg',
     createdAt: '2025-01-22',
   },
   {
@@ -327,6 +329,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Signed poster discount: LIPBOMB25',
     description: '25% off signed posters and exclusive merch.',
     tierAccess: ['belair-tier-3'],
+    thumbnailUrl: '/images/belairlipbombs-album.jpg',
     createdAt: '2025-01-20',
     content: 'LIPBOMB25',
   },
@@ -337,7 +340,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'New single preview - coming next month!',
     description: "We've been cooking something special in the studio.",
     tierAccess: ['belair-tier-1', 'belair-tier-2', 'belair-tier-3'],
-    thumbnailUrl: '/images/content/blb-preview.jpg',
+    thumbnailUrl: '/images/belairlipbombs-hero.jpg',
     createdAt: '2025-01-28',
   },
   // Magdalena Bay Content
@@ -348,7 +351,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: "Making the 'Death & Romance' video",
     description: 'See how we created the visual world of Death & Romance.',
     tierAccess: ['magdalena-tier-2', 'magdalena-tier-3'],
-    thumbnailUrl: '/images/content/mb-video.jpg',
+    thumbnailUrl: '/images/magdalenabay-hero.jpg',
     createdAt: '2025-01-16',
   },
   {
@@ -358,7 +361,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: "Mica's Synth-Pop Essentials",
     description: 'The classics that inspire our sound.',
     tierAccess: ['magdalena-tier-1', 'magdalena-tier-2', 'magdalena-tier-3'],
-    thumbnailUrl: '/images/content/mb-playlist.jpg',
+    thumbnailUrl: '/images/magdalenabay-album.jpg',
     createdAt: '2025-01-08',
   },
   {
@@ -368,7 +371,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Imaginal Mystery Tour highlights',
     description: 'The best moments from our world tour.',
     tierAccess: ['magdalena-tier-2', 'magdalena-tier-3'],
-    thumbnailUrl: '/images/content/mb-tour.jpg',
+    thumbnailUrl: '/images/magdalenabay-avatar.jpg',
     createdAt: '2025-01-24',
   },
   {
@@ -378,6 +381,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Exclusive merch drop: DISK20',
     description: '20% off the new Imaginal Disk collection.',
     tierAccess: ['magdalena-tier-3'],
+    thumbnailUrl: '/images/magdalenabay-album.jpg',
     createdAt: '2025-01-21',
     content: 'DISK20',
   },
@@ -388,7 +392,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Unreleased B-side from Imaginal Disk sessions',
     description: 'A track that didn\'t make the album, exclusive for Disk Access members.',
     tierAccess: ['magdalena-tier-3'],
-    thumbnailUrl: '/images/content/mb-bside.jpg',
+    thumbnailUrl: '/images/magdalenabay-album.jpg',
     createdAt: '2025-01-26',
   },
   {
@@ -398,7 +402,7 @@ export const mockExclusiveContent: ExclusiveContent[] = [
     title: 'Thanks for 5 million monthly listeners!',
     description: 'A heartfelt thank you from Mica and Matt.',
     tierAccess: ['magdalena-tier-1', 'magdalena-tier-2', 'magdalena-tier-3'],
-    thumbnailUrl: '/images/content/mb-thanks.jpg',
+    thumbnailUrl: '/images/magdalenabay-hero.jpg',
     createdAt: '2025-01-30',
   },
 ];

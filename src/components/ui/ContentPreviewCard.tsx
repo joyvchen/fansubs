@@ -1,12 +1,45 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ExclusiveContent } from '@/types';
 
 interface ContentPreviewCardProps {
   content: ExclusiveContent;
   locked?: boolean;
   onClick?: () => void;
+}
+
+function ThumbnailWithFallback({
+  src,
+  alt,
+  locked,
+  fallbackIcon
+}: {
+  src: string;
+  alt: string;
+  locked: boolean;
+  fallbackIcon: React.ReactNode;
+}) {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div className="w-full h-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center">
+        {fallbackIcon}
+      </div>
+    );
+  }
+
+  return (
+    <div className={`w-full h-full ${locked ? 'blur-locked' : ''}`}>
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+        onError={() => setError(true)}
+      />
+    </div>
+  );
 }
 
 const contentTypeIcons: Record<ExclusiveContent['type'], React.ReactNode> = {
@@ -62,11 +95,12 @@ export function ContentPreviewCard({ content, locked = false, onClick }: Content
       {/* Thumbnail */}
       <div className="relative aspect-video bg-[#282828]">
         {content.thumbnailUrl ? (
-          <div className={`w-full h-full ${locked ? 'blur-locked' : ''}`}>
-            <div className="w-full h-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center">
-              {contentTypeIcons[content.type]}
-            </div>
-          </div>
+          <ThumbnailWithFallback
+            src={content.thumbnailUrl}
+            alt={content.title}
+            locked={locked}
+            fallbackIcon={contentTypeIcons[content.type]}
+          />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center">
             {contentTypeIcons[content.type]}

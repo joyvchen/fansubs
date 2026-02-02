@@ -10,6 +10,27 @@ interface ArtistPageProps {
   params: Promise<{ id: string }>;
 }
 
+function ArtistProfileImage({ src, alt }: { src: string; alt: string }) {
+  const [imageError, setImageError] = useState(false);
+
+  if (imageError || !src) {
+    return (
+      <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-5xl shadow-2xl mb-4">
+        {alt.charAt(0)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-32 h-32 mx-auto rounded-full object-cover shadow-2xl mb-4"
+      onError={() => setImageError(true)}
+    />
+  );
+}
+
 export default function ArtistPage({ params }: ArtistPageProps) {
   const resolvedParams = use(params);
   const router = useRouter();
@@ -81,9 +102,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
       {/* Artist Header */}
       <div className="px-4 -mt-8">
         {/* Artist Image */}
-        <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-5xl shadow-2xl mb-4">
-          {artist.name.charAt(0)}
-        </div>
+        <ArtistProfileImage src={artist.imageUrl} alt={artist.name} />
 
         {/* Artist Info */}
         <div className="text-center">

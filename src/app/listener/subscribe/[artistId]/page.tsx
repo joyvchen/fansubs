@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, use, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import { Button, Badge, FeatureList, Modal } from '@/components/ui';
@@ -10,8 +10,33 @@ interface SubscribePageProps {
   params: Promise<{ artistId: string }>;
 }
 
-export default function SubscribePage({ params }: SubscribePageProps) {
-  const resolvedParams = use(params);
+function ArtistAvatar({ src, alt, size = 'md' }: { src: string; alt: string; size?: 'sm' | 'md' | 'lg' }) {
+  const [imageError, setImageError] = useState(false);
+  const sizes = {
+    sm: 'w-12 h-12 text-lg',
+    md: 'w-16 h-16 text-2xl',
+    lg: 'w-20 h-20 text-3xl',
+  };
+
+  if (imageError || !src) {
+    return (
+      <div className={`${sizes[size]} rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold flex-shrink-0`}>
+        {alt.charAt(0)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`${sizes[size]} rounded-full object-cover flex-shrink-0`}
+      onError={() => setImageError(true)}
+    />
+  );
+}
+
+function SubscribeContent({ artistId }: { artistId: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const {
@@ -29,9 +54,9 @@ export default function SubscribePage({ params }: SubscribePageProps) {
   const [step, setStep] = useState<'select' | 'checkout' | 'success' | 'manage'>('select');
   const [showCancelModal, setShowCancelModal] = useState(false);
 
-  const artist = getArtistById(resolvedParams.artistId);
-  const tiers = getTiersForArtist(resolvedParams.artistId);
-  const subscription = getSubscription(resolvedParams.artistId);
+  const artist = getArtistById(artistId);
+  const tiers = getTiersForArtist(artistId);
+  const subscription = getSubscription(artistId);
   const currentTier = subscription ? getTierById(subscription.tierId) : null;
   const selectedTier = selectedTierId ? getTierById(selectedTierId) : null;
 
@@ -62,20 +87,20 @@ export default function SubscribePage({ params }: SubscribePageProps) {
 
   const handleSubscribe = () => {
     if (selectedTierId) {
-      subscribe(resolvedParams.artistId, selectedTierId);
+      subscribe(artistId, selectedTierId);
       setStep('success');
     }
   };
 
   const handleChangeTier = () => {
     if (selectedTierId && subscription) {
-      changeTier(resolvedParams.artistId, selectedTierId);
+      changeTier(artistId, selectedTierId);
       setStep('success');
     }
   };
 
   const handleCancel = () => {
-    cancelSubscription(resolvedParams.artistId);
+    cancelSubscription(artistId);
     setShowCancelModal(false);
     router.push(`/listener/artist/${artist.id}`);
   };
@@ -99,9 +124,7 @@ export default function SubscribePage({ params }: SubscribePageProps) {
 
         {/* Artist Preview */}
         <div className="px-4 py-6 flex items-center gap-4 border-b border-[#282828]">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
-            {artist.name.charAt(0)}
-          </div>
+          <ArtistAvatar src={artist.imageUrl} alt={artist.name} size="md" />
           <div>
             <h2 className="text-white font-bold text-lg">{artist.name}</h2>
             <p className="text-[#a7a7a7] text-sm">Choose a subscription tier</p>
@@ -164,9 +187,7 @@ export default function SubscribePage({ params }: SubscribePageProps) {
         <div className="px-4 py-6">
           <div className="bg-[#181818] rounded-xl p-4 mb-6">
             <div className="flex items-center gap-4 mb-4 pb-4 border-b border-[#282828]">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                {artist.name.charAt(0)}
-              </div>
+              <ArtistAvatar src={artist.imageUrl} alt={artist.name} size="sm" />
               <div>
                 <p className="text-white font-semibold">{artist.name}</p>
                 <p className="text-[#a7a7a7] text-sm">{selectedTier.name} subscription</p>
@@ -292,9 +313,7 @@ export default function SubscribePage({ params }: SubscribePageProps) {
         {/* Current Plan */}
         <div className="px-4 py-6 border-b border-[#282828]">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#535353] to-[#282828] flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
-              {artist.name.charAt(0)}
-            </div>
+            <ArtistAvatar src={artist.imageUrl} alt={artist.name} size="md" />
             <div>
               <h2 className="text-white font-bold text-lg">{artist.name}</h2>
               <div className="flex items-center gap-2">
@@ -384,4 +403,22 @@ export default function SubscribePage({ params }: SubscribePageProps) {
   }
 
   return null;
+}
+
+export default function SubscribePage({ params }: SubscribePageProps) {
+  const resolvedParams = use(params);
+
+  return (
+    <Suspense fallback={
+      <div className="mobile-container flex items-center justify-center min-h-screen">
+        <div className="animate-pulse">
+          <svg className="w-12 h-12 text-[#1ed760]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+          </svg>
+        </div>
+      </div>
+    }>
+      <SubscribeContent artistId={resolvedParams.artistId} />
+    </Suspense>
+  );
 }

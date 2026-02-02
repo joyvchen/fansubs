@@ -24,7 +24,7 @@ export function TierCard({
 
   if (compact) {
     return (
-      <div className={`${gradientClass} rounded-lg p-4 relative`}>
+      <div className={`${gradientClass} rounded-lg p-5 relative`}>
         {tier.highlight && (
           <div className="absolute -top-2 right-4">
             <Badge variant={tier.highlight === 'Most Popular' ? 'popular' : 'value'}>
@@ -33,7 +33,7 @@ export function TierCard({
           </div>
         )}
 
-        <div className="flex justify-between items-start mb-2">
+        <div className="flex justify-between items-start mb-3">
           <div>
             <h3 className="text-white font-bold text-lg">{tier.name}</h3>
             <p className="text-[#a7a7a7] text-sm">{tier.tagline}</p>
@@ -55,7 +55,7 @@ export function TierCard({
   }
 
   return (
-    <div className={`${gradientClass} rounded-xl p-5 relative`}>
+    <div className={`${gradientClass} rounded-xl p-6 relative`}>
       {tier.highlight && (
         <div className="absolute -top-3 right-4">
           <Badge variant={tier.highlight === 'Most Popular' ? 'popular' : 'value'}>
@@ -70,19 +70,19 @@ export function TierCard({
         </div>
       )}
 
-      <div className="mb-4">
+      <div className="mb-5">
         <h3 className="text-white font-bold text-xl mb-1">{tier.name}</h3>
         <p className="text-[#a7a7a7] text-sm">{tier.tagline}</p>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-5">
         <span className="text-white font-bold text-3xl">${tier.priceMonthly.toFixed(2)}</span>
         <span className="text-[#a7a7a7] text-sm">/month</span>
       </div>
 
-      <p className="text-[#a7a7a7] text-sm mb-4 line-clamp-3">{tier.description}</p>
+      <p className="text-[#a7a7a7] text-sm mb-5 line-clamp-3">{tier.description}</p>
 
-      <ul className="space-y-2 mb-4">
+      <ul className="space-y-3 mb-5">
         {tier.features.slice(0, 3).map((feature, index) => (
           <li key={index} className="flex items-start gap-2 text-sm text-white">
             <svg className="w-4 h-4 text-[#1ed760] mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -98,7 +98,7 @@ export function TierCard({
         )}
       </ul>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         {onSelect && !isCurrentTier && (
           <Button variant="primary" fullWidth onClick={onSelect}>
             Subscribe to {tier.name}
